@@ -8,4 +8,6 @@ import com.example.stockorder.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByuserId(String userId);  
+
 }

@@ -2,7 +2,9 @@ package com.example.stockorder.service;
 
 import java.util.List;
 
-import com.example.stockorder.dto.GetQuoteResponse;
+import com.example.stockorder.dto.GetQuoteResponseDTO;
+import com.example.stockorder.dto.StockRequestDTO;
+import com.example.stockorder.dto.UserRequestDTO;
 import com.example.stockorder.entity.Stock;
 import com.example.stockorder.entity.User;
 
@@ -15,6 +17,14 @@ public interface StockOrderService {
 
 	public void updateStock(Stock stock);
 
-	public void confirmQuote(GetQuoteResponse getQuoteResponse);
+	public void confirmQuote(GetQuoteResponseDTO getQuoteResponse);
+
+	public String addUser(UserRequestDTO userRequest);
+
+	public List<User> retUser();
+
+	public String addStock(StockRequestDTO stockRequest);
+
+	public List<Stock> retStock();
 
 }

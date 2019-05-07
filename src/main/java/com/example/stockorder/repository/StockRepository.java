@@ -7,5 +7,6 @@ import com.example.stockorder.entity.Stock;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
+		Stock findBystockId(String stockId); 
 
 }

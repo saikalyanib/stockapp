@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.example.stockorder.dto.GetQuoteResponse;
+import com.example.stockorder.dto.GetQuoteResponseDTO;
+import com.example.stockorder.dto.StockRequestDTO;
+import com.example.stockorder.dto.UserRequestDTO;
 import com.example.stockorder.entity.Order;
 import com.example.stockorder.entity.Stock;
 import com.example.stockorder.entity.User;
@@ -44,7 +47,7 @@ public class StockOrderServiceImpl implements StockOrderService {
 	}
 
 	@Override
-	public void confirmQuote(GetQuoteResponse getQuoteResponse) {
+	public void confirmQuote(GetQuoteResponseDTO getQuoteResponse) {
 
 		Order order = new Order();
 		order.setStockId(getQuoteResponse.getStockId());
@@ -99,4 +102,59 @@ public class StockOrderServiceImpl implements StockOrderService {
 	 * }
 	 */
 
+	@Override
+	@Transactional
+	public String addUser(UserRequestDTO userRequest) {
+		User user = new User();
+
+		User u1 = userRepository.findByuserId(userRequest.getUserId());
+
+		if (u1 != null) {
+			return "Validate based on the used ID existing";
+		} else {
+
+			user.setUserId(userRequest.getUserId());
+			user.setName(userRequest.getName());
+			user.setAddress(userRequest.getAddress());
+			user.setMail(userRequest.getMail());
+			user.setMobileNumber(userRequest.getMobileNumber());
+
+			userRepository.save(user);
+			return user.getName() + "Stock Successfully Added";
+
+		}
+
+	}
+
+	@Override
+	public List<User> retUser() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	@Transactional
+	public String addStock(StockRequestDTO stockRequest) {
+		Stock stock = new Stock();
+
+		Stock st1 = stockRepository.findBystockId(stockRequest.getStockId());
+
+		if (st1 != null) {
+			return "Validate based on the used ID existing";
+		} else {
+			stock.setStockId(stockRequest.getStockId());
+			stock.setStockName(stockRequest.getStockName());
+			stock.setStockPrice(stockRequest.getStockPrice());
+
+			stockRepository.save(stock);
+			return stockRequest.getStockName() + "Stock Successfully Added";
+
+		}
+
+	}
+
+	@Override
+	public List<Stock> retStock() {
+
+		return stockRepository.findAll();
+	}
 }

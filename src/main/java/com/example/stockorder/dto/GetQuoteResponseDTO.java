@@ -3,7 +3,7 @@ package com.example.stockorder.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class GetQuoteResponse implements Serializable {
+public class GetQuoteResponseDTO implements Serializable {
 
 //	[{ stockId: String, stockName: String, volume: Long, price: Double, purchasePrice: Double, fee: Double, totalFee: Double,warning: String}]
 

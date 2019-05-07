@@ -2,6 +2,8 @@
 package com.example.stockorder.controller;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.stockorder.dto.CheckResponce;
-import com.example.stockorder.dto.ConfirmOrder;
+import com.example.stockorder.dto.ConfirmOrderDTO;
+import com.example.stockorder.dto.GetQuoteResponseDTO;
+import com.example.stockorder.dto.StockRequestDTO;
+import com.example.stockorder.dto.UserRequestDTO;
 import com.example.stockorder.entity.Order;
+import com.example.stockorder.entity.Stock;
+import com.example.stockorder.entity.User;
 import com.example.stockorder.service.StockOrderService;
 
 @RestController
@@ -28,14 +35,14 @@ public class StockorderController {
 	@Autowired
 	RestTemplate restTemplate;
 
-	@GetMapping("/payeedelete/{stockId}/{volume}")
+	@GetMapping("/getQuote/{stockId}/{volume}")
 	public CheckResponce findPrice(@PathVariable("stockId") long stockId, @PathVariable("volume") long volume) {
 		return null;
 
 	}
 
 	@PostMapping("/confirmOrder")
-	public Order confirmOrder(@RequestBody ConfirmOrder confirmOrder) {
+	public Order confirmOrder(@RequestBody ConfirmOrderDTO confirmOrder) {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -46,16 +53,39 @@ public class StockorderController {
 		 * confirmOrder.getStockId() + "}/" + "{" + confirmOrder.getVolume(),
 		 * HttpMethod.GET, entity, Order.class).getBody();
 		 */
-		// I should get kesav pojo and prepare pojo
 
-		// Save
+		GetQuoteResponseDTO getQuoteResponse = new GetQuoteResponseDTO();
 
-		//GetQuoteResponse getQuoteResponse = new GetQuoteResponse();
+		getQuoteResponse.setStockId("123");
+		getQuoteResponse.setStockName("stockName");
+		getQuoteResponse.setTime(new Date());
 
-		//stockOrderService.confirmQuote(getQuoteResponse);
+		stockOrderService.confirmQuote(getQuoteResponse);
 
 		return null;
 
 	}
 
+	@PostMapping("/addUser")
+	public String addUser(@RequestBody UserRequestDTO userRequest) {
+		return stockOrderService.addUser(userRequest);
+	}
+
+	@GetMapping("/retrieveUsers")
+	public List<User> retrieveUser() {
+		return stockOrderService.retUser();
+
+	}
+
+	@PostMapping("/addStock")
+	public String addingStocks(@RequestBody StockRequestDTO stockRequest) {
+		return stockOrderService.addStock(stockRequest);
+
+	}
+
+	@GetMapping("/retrieveStocks")
+	public List<Stock> retrieveStocks() {
+		return stockOrderService.retStock();
+
+	}
 }

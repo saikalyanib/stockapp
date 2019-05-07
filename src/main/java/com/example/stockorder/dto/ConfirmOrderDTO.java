@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 
-public class ConfirmOrder implements Serializable {
+public class ConfirmOrderDTO implements Serializable {
 
 	private static final long serialVersionUID = -5580180921918136752L;
 	private String userId;
