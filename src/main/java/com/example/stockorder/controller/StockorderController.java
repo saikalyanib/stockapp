@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ import com.example.stockorder.service.StockOrderService;
 @RestController
 @RequestMapping("/stocks")
 public class StockorderController {
-	
+
 	@Autowired
 	StockOrderService stockOrderService;
 
@@ -38,16 +39,8 @@ public class StockorderController {
 	RestTemplate restTemplate;
 
 	@GetMapping("/showPrice/{stockId}/{volume}")
-	public CheckResponce findPrice(@PathVariable("stockId") String stockId,@PathVariable("volume") long volume ){
-		 return stockOrderService.findPrice(volume,stockId);
-		
-}
-
-	
-
-	@GetMapping("/getQuote/{stockId}/{volume}")
-	public CheckResponce findPrice(@PathVariable("stockId") long stockId, @PathVariable("volume") long volume) {
-		return null;
+	public CheckResponce findPrice(@PathVariable("stockId") String stockId, @PathVariable("volume") long volume) {
+		return stockOrderService.findPrice(volume, stockId);
 
 	}
 
@@ -58,7 +51,9 @@ public class StockorderController {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<String>(headers);
 
-		
+		restTemplate.exchange(
+				"http://localhost:8080/" + "{" + confirmOrder.getStockId() + "}/" + "{" + confirmOrder.getVolume(),
+				HttpMethod.GET, entity, Order.class).getBody();
 
 		GetQuoteResponseDTO getQuoteResponse = new GetQuoteResponseDTO();
 
