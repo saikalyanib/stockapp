@@ -6,11 +6,12 @@ import com.example.stockorder.dto.CheckResponce;
 import com.example.stockorder.dto.GetQuoteResponseDTO;
 import com.example.stockorder.dto.StockRequestDTO;
 import com.example.stockorder.dto.UserRequestDTO;
+import com.example.stockorder.entity.Order;
 import com.example.stockorder.entity.Stock;
 import com.example.stockorder.entity.User;
 
 public interface StockOrderService {
-public CheckResponce findPrice(Long volume, String stockId);
+	public CheckResponce findPrice(Long volume, String stockId);
 
 	public List<User> retrieveUsers();
 
@@ -28,4 +29,7 @@ public CheckResponce findPrice(Long volume, String stockId);
 
 	public List<Stock> retStock();
 
+	public List<Order> findByOrderID(String orderId);
+
+	public List<Order> findByUserID(String userId);
 }

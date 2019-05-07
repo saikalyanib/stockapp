@@ -173,4 +173,18 @@ public class StockOrderServiceImpl implements StockOrderService {
 
 		return stockRepository.findAll();
 	}
+
+	@Override
+
+	public List<Order> findByOrderID(String orderId) {
+
+		return orderRepository.findByOrderId(orderId);
+
+	}
+
+	@Override
+	public List<Order> findByUserID(String userId) {
+		// TODO Auto-generated method stub
+		return orderRepository.findByUserId(userId);
+	}
 }
