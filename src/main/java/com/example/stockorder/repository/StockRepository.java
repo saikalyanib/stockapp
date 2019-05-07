@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.example.stockorder.entity.Stock;
 @Repository
-public interface StockRepository extends JpaRepository<Stock,String >{
-
-	List<Stock> findByStockId( String stockId);
-	
+public interface StockRepository extends JpaRepository<Stock, String> {
+		Stock findBystockId(String stockId); 
+		List<Stock> findByStockId( String stockId);
 
 }

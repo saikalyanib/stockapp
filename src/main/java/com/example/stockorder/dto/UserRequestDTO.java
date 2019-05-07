@@ -1,20 +1,10 @@
-package com.example.stockorder.entity;
+package com.example.stockorder.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class UserRequestDTO implements Serializable {
 
-@Entity
-public class User implements Serializable {
-
-	private static final long serialVersionUID = 8677302076396827028L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private static final long serialVersionUID = 1L;
 
 	private String userId;
 	private String name;
@@ -22,16 +12,9 @@ public class User implements Serializable {
 	private String mail;
 	private Long mobileNumber;
 
-	public User() {
+	public UserRequestDTO() {
 		super();
-	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getUserId() {
@@ -76,7 +59,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", UserId=" + userId + ", name=" + name + ", address=" + address + ", mail=" + mail
+		return "UserRequest [userId=" + userId + ", name=" + name + ", address=" + address + ", mail=" + mail
 				+ ", mobileNumber=" + mobileNumber + "]";
 	}
 

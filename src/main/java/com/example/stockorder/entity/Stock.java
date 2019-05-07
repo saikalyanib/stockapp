@@ -1,6 +1,5 @@
 package com.example.stockorder.entity;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -11,7 +10,10 @@ import javax.persistence.Id;
 @Entity
 public class Stock implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5757657067464952950L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +22,10 @@ public class Stock implements Serializable {
 	private String stockId;
 	private String stockName;
 	private Double stockPrice;
+	private Long volume;
+
+	
+
 	public Long getId() {
 		return id;
 	}
@@ -65,11 +71,8 @@ public class Stock implements Serializable {
 		return serialVersionUID;
 	}
 
-	private Long volume;
 
-	public Stock() {
-		super();
-	}
+
 
 	
 }
