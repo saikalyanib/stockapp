@@ -21,7 +21,7 @@ public class Stock implements Serializable {
 
 	private String stockId;
 	private String stockName;
-	private String stockPrice;
+	private Double stockPrice;
 	private Long volume;
 
 	public Stock() {
@@ -52,11 +52,11 @@ public class Stock implements Serializable {
 		this.stockName = stockName;
 	}
 
-	public String getStockPrice() {
+	public Double getStockPrice() {
 		return stockPrice;
 	}
 
-	public void setStockPrice(String stockPrice) {
+	public void setStockPrice(Double stockPrice) {
 		this.stockPrice = stockPrice;
 	}
 
