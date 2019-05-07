@@ -17,15 +17,9 @@ public class Stock implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String StockId;
-	private String StockName;
-	private String StockPrice;
-	private Long Volume;
-
-	public Stock() {
-		super();
-	}
-
+	private String stockId;
+	private String stockName;
+	private Double stockPrice;
 	public Long getId() {
 		return id;
 	}
@@ -35,41 +29,47 @@ public class Stock implements Serializable {
 	}
 
 	public String getStockId() {
-		return StockId;
+		return stockId;
 	}
 
 	public void setStockId(String stockId) {
-		StockId = stockId;
+		this.stockId = stockId;
 	}
 
 	public String getStockName() {
-		return StockName;
+		return stockName;
 	}
 
 	public void setStockName(String stockName) {
-		StockName = stockName;
+		this.stockName = stockName;
 	}
 
-	public String getStockPrice() {
-		return StockPrice;
+	
+	public Double getStockPrice() {
+		return stockPrice;
 	}
 
-	public void setStockPrice(String stockPrice) {
-		StockPrice = stockPrice;
+	public void setStockPrice(Double stockPrice) {
+		this.stockPrice = stockPrice;
 	}
 
 	public Long getVolume() {
-		return Volume;
+		return volume;
 	}
 
 	public void setVolume(Long volume) {
-		Volume = volume;
+		this.volume = volume;
 	}
 
-	@Override
-	public String toString() {
-		return "Stock [id=" + id + ", StockId=" + StockId + ", StockName=" + StockName + ", StockPrice=" + StockPrice
-				+ ", Volume=" + Volume + "]";
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
+	private Long volume;
+
+	public Stock() {
+		super();
+	}
+
+	
 }

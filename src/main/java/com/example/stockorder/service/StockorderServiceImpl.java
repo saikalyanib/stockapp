@@ -1,26 +1,35 @@
 package com.example.stockorder.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.stockorder.dto.CheckPriceDto;
 import com.example.stockorder.dto.CheckResponce;
-
+import com.example.stockorder.entity.Stock;
+import com.example.stockorder.repository.StockRepository;
+@Service
 public class StockorderServiceImpl implements StockorderService{
-	
+	@Autowired
+	StockRepository stockRepository;
 
-	/*@Override
-	public CheckResponce findPrice(Long volume, Long id) {
+	@Override
+	public CheckResponce findPrice(Long volume, String stockId) {
 		CheckResponce checkresponce = new CheckResponce();
 		try {
 			
 			List<Stock> list = stockRepository.findByStockId(stockId);
+			Stock stock=list.get(0);
 			
 			if (stock != null) {
 				CheckPriceDto checkPriceDto = new CheckPriceDto();
 
-				checkPriceDto.setdayOfMonth(Calendar.DAY_OF_MONTH);
-				checkPriceDto.setVolumeOfPurchase(checkRequest.getNoOfShares());
-				checkPriceDto.setStockId(checkRequest.getId());
+				checkPriceDto.setVolume(volume);
+				checkPriceDto.setStockId(stockId);
 				checkPriceDto.setPrice(stock.getStockPrice());
-				checkPriceDto.setName(stock.getStockName());
-			checkPriceDto.setTotalStockPrice(volume * stock.getStockPrice());
+				checkPriceDto.setStockName(stock.getStockName());
+			    checkPriceDto.setPrice(volume* stock.getStockPrice());
 				double amount = volume* stock.getStockPrice();
 				double fee;
 				if (volume < 500) {
@@ -29,35 +38,35 @@ public class StockorderServiceImpl implements StockorderService{
 					checkPriceDto.setFee(fee);
 
 				} else {
-
 					fee = amount * 0.15 / 100;
 					checkPriceDto.setFee(fee);
 				}
 
-		checkPriceDto.setTotalIncludeFee(fee + (volume * stock.getStockPrice()));
+		checkPriceDto.setPurchasePrice(fee + (volume * stock.getStockPrice()));
+		checkPriceDto.setWarning("Please note that the market pricing will keeping changing so the final price used for trade execution will vary");
 
-				checkresponce.setStstusCode(200);
-				checkresponce.setStstusMessage("sucess");
+				checkresponce.setStatusCode(200);
+				checkresponce.setStatusMessage("sucess");
 				checkresponce.setCheckPriceDto(checkPriceDto);
 				return checkresponce;
 			} else {
 
-				checkresponce.setStstusCode(404);
-				checkresponce.setStstusMessage("stock not fouund send proper stockId");
+				checkresponce.setStatusCode(404);
+				checkresponce.setStatusMessage("stock not fouund send proper stockId");
 				checkresponce.setCheckPriceDto(new CheckPriceDto());
 
 				return checkresponce;
 			}
 		} catch (Exception e) {
 
-			checkresponce.setStstusCode(1);
-			checkresponce.setStstusMessage("Application problem");
+			checkresponce.setStatusCode(1);
+			checkresponce.setStatusMessage("Application problem");
 			checkresponce.setCheckPriceDto(new CheckPriceDto());
 			return checkresponce;
 
 		}
 
 	}
-*/
+
 
 }

@@ -1,7 +1,11 @@
 package com.example.stockorder.service;
 
-import com.example.stockorder.dto.CheckResponce;
+import org.springframework.stereotype.Service;
 
+import com.example.stockorder.dto.CheckResponce;
+@Service
 public interface StockorderService {
-//public CheckResponce findPrice(Long volume, Long id);
+	
+public CheckResponce findPrice(Long volume, String stockId);
+
 }
