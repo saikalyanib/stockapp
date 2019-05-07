@@ -1,7 +1,5 @@
 package com.example.stockorder.entity;
 
-
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,13 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Order implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5288694851992249717L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +25,14 @@ public class Order implements Serializable {
 	private String stockId;
 	private String orderId;
 	private String stockName;
-	private Double StockPrice;
+	private Double stockPrice;
 	private Long stockVolumePurchased;
 	private Double stockPurchasePrice;
 	private Double fees;
 	private Double stockTotalFees;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date timeOfTrade;
+	@UpdateTimestamp
+	private Date time;
 
 	public Order() {
 		super();
@@ -69,14 +70,6 @@ public class Order implements Serializable {
 		this.stockName = stockName;
 	}
 
-	public Double getStockPrice() {
-		return StockPrice;
-	}
-
-	public void setStockPrice(Double stockPrice) {
-		StockPrice = stockPrice;
-	}
-
 	public Long getStockVolumePurchased() {
 		return stockVolumePurchased;
 	}
@@ -109,20 +102,28 @@ public class Order implements Serializable {
 		this.stockTotalFees = stockTotalFees;
 	}
 
-	public Date getTimeOfTrade() {
-		return timeOfTrade;
+	public Double getStockPrice() {
+		return stockPrice;
 	}
 
-	public void setTimeOfTrade(Date timeOfTrade) {
-		this.timeOfTrade = timeOfTrade;
+	public void setStockPrice(Double stockPrice) {
+		this.stockPrice = stockPrice;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", stockId=" + stockId + ", orderId=" + orderId + ", stockName=" + stockName
-				+ ", StockPrice=" + StockPrice + ", stockVolumePurchased=" + stockVolumePurchased
+				+ ", StockPrice=" + stockPrice + ", stockVolumePurchased=" + stockVolumePurchased
 				+ ", stockPurchasePrice=" + stockPurchasePrice + ", fees=" + fees + ", stockTotalFees=" + stockTotalFees
-				+ ", timeOfTrade=" + timeOfTrade + "]";
+				+ ", timeOfTrade=" + time + "]";
 	}
 
 }

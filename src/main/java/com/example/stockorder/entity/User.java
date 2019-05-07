@@ -1,6 +1,5 @@
 package com.example.stockorder.entity;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -11,13 +10,13 @@ import javax.persistence.Id;
 @Entity
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8677302076396827028L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String UserId;
+	private String userId;
 	private String name;
 	private String address;
 	private String mail;
@@ -36,11 +35,11 @@ public class User implements Serializable {
 	}
 
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -77,7 +76,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", UserId=" + UserId + ", name=" + name + ", address=" + address + ", mail=" + mail
+		return "User [id=" + id + ", UserId=" + userId + ", name=" + name + ", address=" + address + ", mail=" + mail
 				+ ", mobileNumber=" + mobileNumber + "]";
 	}
 

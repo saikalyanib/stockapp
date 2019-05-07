@@ -1,6 +1,5 @@
 package com.example.stockorder.entity;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -11,16 +10,19 @@ import javax.persistence.Id;
 @Entity
 public class Stock implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5757657067464952950L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String StockId;
-	private String StockName;
-	private String StockPrice;
-	private Long Volume;
+	private String stockId;
+	private String stockName;
+	private String stockPrice;
+	private Long volume;
 
 	public Stock() {
 		super();
@@ -35,41 +37,35 @@ public class Stock implements Serializable {
 	}
 
 	public String getStockId() {
-		return StockId;
+		return stockId;
 	}
 
 	public void setStockId(String stockId) {
-		StockId = stockId;
+		this.stockId = stockId;
 	}
 
 	public String getStockName() {
-		return StockName;
+		return stockName;
 	}
 
 	public void setStockName(String stockName) {
-		StockName = stockName;
+		this.stockName = stockName;
 	}
 
 	public String getStockPrice() {
-		return StockPrice;
+		return stockPrice;
 	}
 
 	public void setStockPrice(String stockPrice) {
-		StockPrice = stockPrice;
+		this.stockPrice = stockPrice;
 	}
 
 	public Long getVolume() {
-		return Volume;
+		return volume;
 	}
 
 	public void setVolume(Long volume) {
-		Volume = volume;
-	}
-
-	@Override
-	public String toString() {
-		return "Stock [id=" + id + ", StockId=" + StockId + ", StockName=" + StockName + ", StockPrice=" + StockPrice
-				+ ", Volume=" + Volume + "]";
+		this.volume = volume;
 	}
 
 }
